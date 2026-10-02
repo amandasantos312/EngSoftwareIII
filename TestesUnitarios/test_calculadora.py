@@ -21,7 +21,7 @@ def test_dividir_com_sucesso(calculadora):
     resultado = calculadora.dividir(10, 2)
     assert resultado == 5
 
-def test_dividir_por_zero(calculadora):
+def test_dividir_por_zero_lanca_excecao(calculadora):
     with pytest.raises(ZeroDivisionError):
         calculadora.dividir(10, 0) 
 
