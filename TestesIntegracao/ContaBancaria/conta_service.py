@@ -23,6 +23,8 @@ class ContaService:
         self.repositorio.atualizar_saldo(conta_id, conta)
 
     def transferir(self, origem_id, destino_id, valor):
+        if origem_id == destino_id:
+            raise ValueError("Conta de origem e destino devem ser diferentes")
         origem = self._obter(origem_id)
         destino = self._obter(destino_id)
         origem.sacar(valor)  # se falhar, nada foi gravado ainda

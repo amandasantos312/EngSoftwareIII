@@ -74,3 +74,10 @@ def test_conta_inexistente_levanta_erro_e_nao_altera_banco(service, conexao):
     with pytest.raises(ContaNaoEncontradaError):
         service.transferir(CONTA_A, 999, 10.0)
     assert saldo_no_banco(conexao, CONTA_A) == 100.0
+
+
+def test_transferencia_para_a_mesma_conta_levanta_erro_e_nao_altera_banco(service, conexao):
+    # Caminho de erro
+    with pytest.raises(ValueError):
+        service.transferir(CONTA_A, CONTA_A, 40.0)
+    assert saldo_no_banco(conexao, CONTA_A) == 100.0
